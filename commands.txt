@@ -1,0 +1,7 @@
+ros2 run tf2_ros static_transform_publisher 2 1 0 0.785 0 0 world robot_1
+ros2 run tf2_ros static_transform_publisher 1 0 0 0 0 0 robot_1 robot_2
+ros2 run tf2_tools view_frames
+ros2 launch neem_bot rsp.launch.py use_sime_time:=true
+ros2 run joint_state_publisher_gui joint_state_publisher_gui
+ros2 launch gazebo_ros gazebo.launch.py
+ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity bot_name
