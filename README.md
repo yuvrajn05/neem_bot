@@ -13,3 +13,8 @@ sudo apt install ros-humble-xacro
 sudo apt install ros-humble-joint-state-publisher-gui
 sudo apt install ros-humble-gazebo-ros-pkg
 sudo apt install ros-humble-rqt-image-view
+sudo apt install ros-humble-slam-toolbox
+sudo apt install ros-humble-navigation2
+sudo apt install ros-humble-nav2-bringup
+sudo apt install ros-humble-turtlebot3*
+sudo apt install ros-humble-twist-mux

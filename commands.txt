@@ -5,6 +5,13 @@ ros2 launch neem_bot rsp.launch.py use_sime_time:=true
 ros2 run joint_state_publisher_gui joint_state_publisher_gui
 ros2 launch gazebo_ros gazebo.launch.py
 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity bot_name
-ros2 launch neem_bot launch_sim.launch.py
+ros2 launch neem_bot launch_sim.launch.py world:=./world/
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox'
+ros2 run image_transport republish compressed raw --ros-args -r in/compressed:=/camera/image_raw/compressed -r out:=/camera/image_raw/uncompressed
+ros2 launch neem_bot launch_sim.launch.py world:=./worlds/obstacles.world
+ros2 launch slam_toolbox online_async_launch.py params_file:=./config/mapper_params_online_async.yaml use_sim_time:=true
+ros2 run nav2_map_server map_server --ros-args -p yaml_filename:=./config/my_save.yaml -p use_sim_time:=true
+ros2 run nav2_util lifecycle_bringup map_server
+ros2 run nav2_amcl amcl --ros-args -p use_sim_time:=true
+ros2 run nav2_util lifecycle_bringup amcl    # after this go in rviz and under map topic set durability policy to transient local
