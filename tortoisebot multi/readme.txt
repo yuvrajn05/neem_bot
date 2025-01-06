@@ -1,0 +1,1 @@
+spawn entity.py is responsible for the multibot and robot namespace attribute of spawn entity will give namespace to each robot try manupulating it or use the turtlebot code of robo to do it to start this folder should not be in neem bot or in workspace
